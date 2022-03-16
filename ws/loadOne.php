@@ -2,10 +2,12 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     chdir("..");
     include_once  __DIR__.'./../service/EtudiantService.php';
-    loadAll();
+    loadOne();
 }
-function loadAll() {
+function loadOne() {
+    extract($_POST);
     $es = new EtudiantService();
+    $etd = $es->findById(intval($id));
     header('Content-type: application/json');
-    echo json_encode($es->findAllApi());
+    echo json_encode($etd);
 }
