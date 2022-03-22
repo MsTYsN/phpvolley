@@ -9,10 +9,12 @@ function create()
     extract($_POST);
     $es = new EtudiantService();
 
-    //file_put_contents($image, file_get_contents($img));
-    $image = base64_to_jpeg($img, 'uploaded.jpg');
-
-
+    if($img == "no") {
+        $image = null;
+    }else {
+        $image = $img;
+    }
+    
     $es->create(new Etudiant(1, $nom, $prenom, $ville, $sexe, $image));
     header('Content-type: application/json');
     echo json_encode($es->findAllApi());
