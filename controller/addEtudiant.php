@@ -11,9 +11,6 @@ if (isset($_FILES["img"]["name"]) && !empty($_FILES["img"]["name"])) {
     $check = getimagesize($_FILES["img"]["tmp_name"]);
     if ($check !== false) {
         $uploadedImg = file_get_contents($_FILES['img']['tmp_name']);
-        if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
-
-        }
     }
 }
 
